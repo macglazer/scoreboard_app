@@ -1,6 +1,6 @@
 package com.scoreboard.model;
 
-class FootballMatch {
+public class FootballMatch {
     private String homeTeam;
     private String awayTeam;
     private int homeScore;
@@ -18,12 +18,8 @@ class FootballMatch {
         this.awayScore = awayScore;
     }
 
-    public String getHomeTeam() {
-        return homeTeam;
-    }
-
-    public String getAwayTeam() {
-        return awayTeam;
+    public int getTotalScore() {
+        return homeScore + awayScore;
     }
 
     public int getHomeScore() {

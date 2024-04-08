@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-class Scoreboard {
+public class Scoreboard {
     private List<FootballMatch> matches;
 
     public Scoreboard() {
@@ -13,14 +13,16 @@ class Scoreboard {
     }
 
     public void startMatch(String homeTeam, String awayTeam) {
-    }
-
-    public void updateScore(int matchIndex, int homeScore, int awayScore) {
-
+        matches.add(new FootballMatch(homeTeam, awayTeam));
     }
 
     public List<FootballMatch> getMatches() {
         return matches;
+    }
+
+    public void updateScore(int matchIndex, int homeScore, int awayScore) {
+        FootballMatch match = matches.get(matchIndex);
+        match.updateScore(homeScore, awayScore);
     }
 
     public void removeMatch(int matchIndex) {
@@ -28,8 +30,8 @@ class Scoreboard {
     }
 
     public List<FootballMatch> getSummary() {
-
-
-        return Collections.emptyList();
+        List<FootballMatch> sortedMatches = new ArrayList<>(matches);
+        Collections.sort(sortedMatches, Comparator.comparing(FootballMatch::getTotalScore).reversed());
+        return sortedMatches;
     }
 }
