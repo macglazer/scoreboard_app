@@ -1,11 +1,14 @@
 package com.scoreboard.model;
 
+import com.scoreboard.App;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Scoreboard {
+    private static final Logger logger = Logger.getLogger(Scoreboard.class.getName());
     private List<FootballMatch> matches;
 
     public Scoreboard() {
@@ -14,6 +17,7 @@ public class Scoreboard {
 
     public void startMatch(String homeTeam, String awayTeam) {
         matches.add(new FootballMatch(homeTeam, awayTeam));
+        logger.info("Started a new match: " + homeTeam + " vs " + awayTeam);
     }
 
     public List<FootballMatch> getMatches() {
