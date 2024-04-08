@@ -21,17 +21,27 @@ public class Scoreboard {
     }
 
     public void updateScore(int matchIndex, int homeScore, int awayScore) {
-        FootballMatch match = matches.get(matchIndex);
-        match.updateScore(homeScore, awayScore);
+        try {
+            FootballMatch match = matches.get(matchIndex);
+            match.updateScore(homeScore, awayScore);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Invalid match index: " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.err.println("Match at the given index does not exist: " + e.getMessage());
+        }
     }
 
     public void removeMatch(int matchIndex) {
-        matches.remove(matchIndex);
+        try {
+            matches.remove(matchIndex);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Invalid match index: " + e.getMessage());
+        }
     }
 
     public List<FootballMatch> getSummary() {
         List<FootballMatch> sortedMatches = new ArrayList<>(matches);
-        Collections.sort(sortedMatches, Comparator.comparing(FootballMatch::getTotalScore).reversed());
+        sortedMatches.sort(Comparator.comparing(FootballMatch::getTotalScore).reversed());
         return sortedMatches;
     }
 }
