@@ -30,7 +30,7 @@ public class App {
         scoreboard.startMatch("Argentina", "Australia");
         scoreboard.updateScore(4, 3, 1);
 
-        scoreboard.removeMatch(0); // Usunięcie pierwszego meczu
+        scoreboard.removeMatch(0);
 
         List<FootballMatch> summary = scoreboard.getSummary();
         for (FootballMatch match : summary) {
